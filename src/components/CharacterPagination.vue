@@ -1,8 +1,10 @@
 <template>
     <div class="pagination">
+        <button class="start" @click="toPage(1)" :disabled="currentPage <= 1">&#8249;&#8249;</button>
         <button class="prev" @click="toPage(currentPage - 1)" :disabled="currentPage <= 1">&#8249;</button>
         <span id="currentPage">{{ currentPage }}</span> / <span id="totalPages">{{ totalPages }}</span>
         <button class="next" @click="toPage(currentPage + 1)" :disabled="currentPage === totalPages">&#8250;</button>
+        <button class="end" @click="toPage(totalPages)" :disabled="currentPage === totalPages">&#8250;&#8250;</button>
     </div>
 </template>
 
@@ -28,13 +30,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-block: 20px;
 }
 
 .pagination button {
     padding: 5px 10px;
-    margin: 0 5px;
     border: none;
     border-radius: 3px;
     background-color: #007bff;
