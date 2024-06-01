@@ -29,7 +29,6 @@ export default {
 
 <style scoped>
 .cardView {
-    flex-grow: 1;
     padding: 20px;
 
     display: flex;

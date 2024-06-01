@@ -36,7 +36,7 @@ export default {
 }
 
 .card:hover {
-    transform: scale(1.1);
+    outline: 3px solid #007bff;
     cursor: pointer;
 }
 
