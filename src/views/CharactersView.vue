@@ -4,6 +4,7 @@
         <FiltersComponent @search="handleFilter" />
         <CharacterPagination :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
         <CharacterCardList :cards="cards" />
+        <CharacterPagination :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
       </main>
     </div>
   </template>

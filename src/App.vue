@@ -1,13 +1,20 @@
 <template>
   <header class="header">
   <div></div>
-  <h1>Rick And Morty Database</h1>
+  <RouterLink to="/">
+    <h1>Rick And Morty Database</h1>
+  </RouterLink>
   <ul class="header-links">
     <RouterLink to="/">Characters</RouterLink>
     <RouterLink to="/episodes">Episodes</RouterLink>
   </ul>
   </header>
-  <RouterView/>
+  <main class="main">
+    <RouterView/>
+  </main>
+  <footer class="footer">
+    <p>© 2023. All rights reserved.</p>
+  </footer>
 </template>
 
 <script>
@@ -30,5 +37,17 @@ export default {
 .header-links {
   display: flex;
   gap: 20px;
+}
+
+.main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 40px;
+  text-align: center;
 }
 </style>
