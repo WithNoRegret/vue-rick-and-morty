@@ -1,11 +1,14 @@
 <template>
-    <div class="cardView">
-        <h1>{{ card.name }}</h1>
-        <img :src="card.image" :alt="card.name">
-        <p>{{ card.status }} - {{ card.species }}</p>
-        <p>Last known location: {{ card.location.name }}</p>
-    </div>
-    <RouterLink to="/" class="back-button">Back to character list</RouterLink>
+    <div v-if="isLoading">Loading...</div>
+    <div v-else>
+        <div class="cardView">
+            <h1>{{ card.name }}</h1>
+            <img :src="card.image" :alt="card.name">
+            <p>{{ card.status }} - {{ card.species }}</p>
+            <p>Last known location: {{ card.location.name }}</p>
+        </div>
+        <RouterLink to="/" class="back-button">Back to character list</RouterLink>
+    </div> 
 </template>
 
 <script>
@@ -15,14 +18,15 @@ export default {
     name: 'CharacterCardView',
     data() {
         return {
-            card: {}
+            card: {},
+            isLoading: true
         }
     },
     async created() {
         const id = this.$route.params.id;
         const data = await fetchCharacter(id);
         this.card = data;
-        console.log(data);
+        this.isLoading = false;
     }
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
-    <div class="card-list">
+    <div v-if="isLoading">Loading...</div>
+    <div v-else class="card-list">
         <div v-for="card in cards" :key="card">
             <h1>{{ card.name }}</h1>
             <p>{{ card.air_date }}</p>
@@ -16,15 +17,18 @@ export default {
     data() {
         return {
             cards: [],
+            isLoading: true
         };
     },
     async mounted() {
       try {
         const data = await fetchEpisodes();
         this.cards = data;
+        this.isLoading = false;
       } catch (error) {
         console.error(error.message);
         this.cards = [];
+        this.isLoading = false;
       }
     },
 };
