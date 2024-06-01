@@ -1,10 +1,11 @@
 <template>
     <div>
-      <main class="main">
+      <main class="charactersView">
         <FiltersComponent @search="handleFilter" />
-        <CharacterPagination :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
-        <CharacterCardList :cards="cards" />
-        <CharacterPagination :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
+        <CharacterPagination v-if="cards.length" :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
+        <CharacterCardList v-if="cards.length" :cards="cards" />
+        <CharacterPagination v-if="cards.length" :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
+        <div v-else> Sorry, No characters found :( </div>
       </main>
     </div>
   </template>
@@ -88,10 +89,10 @@
   </script>
   
   <style>
-.main {
+.charactersView {
     display: flex;
-    justify-content: center;
     align-items: stretch;
     flex-direction: column;
+    gap: 100px;
   }
   </style>
