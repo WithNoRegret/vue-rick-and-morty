@@ -5,7 +5,7 @@
         <CharacterPagination v-if="cards.length" :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
         <CharacterCardList v-if="cards.length" :cards="cards" />
         <CharacterPagination v-if="cards.length" :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
-        <div v-else> Sorry, No characters found :( </div>
+        <div v-else class="no-results"> Sorry, No characters found :( </div>
       </main>
     </div>
   </template>
@@ -93,6 +93,13 @@
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    gap: 100px;
-  }
+    gap: 20px;
+}
+
+.no-results {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
   </style>
