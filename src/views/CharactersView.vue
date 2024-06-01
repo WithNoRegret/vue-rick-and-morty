@@ -1,6 +1,7 @@
 <template>
     <div>
-      <main class="charactersView">
+      <div v-if="isLoading">Loading...</div>
+      <main v-else class="charactersView">
         <FiltersComponent @search="handleFilter" />
         <CharacterPagination v-if="cards.length" :totalPages="totalPages" :currentPage="page" @page-changed="handlePagination" />
         <CharacterCardList v-if="cards.length" :cards="cards" />
@@ -29,7 +30,8 @@
         name: '',
         status: '',
         page: 0,
-        totalPages: 0
+        totalPages: 0,
+        isLoading: true
       };
     },
     async mounted() {
@@ -38,11 +40,13 @@
         this.page = 1;
         this.cards = data.results;
         this.totalPages = data.info.pages;
+        this.isLoading = false;
       } catch (error) {
         console.error(error.message);
         this.cards = [];
         this.page = 0;
         this.totalPages = 0;
+        this.isLoading = false;
       }
     },
     methods: {
@@ -59,11 +63,13 @@
           }
           this.cards = data.results;
           this.totalPages = data.info.pages;
+          this.isLoading = false;
         } catch (error) {
           console.error(error.message);
           this.cards = [];
           this.page = 0;
           this.totalPages = 0;
+          this.isLoading = false;
         }
       },
       async handlePagination(page) {
@@ -74,14 +80,17 @@
             this.page = 0;
             this.totalPages = 0;
             this.cards = [];
+            this.isLoading = false;
           }
           this.cards = data.results;
           this.totalPages = data.info.pages;
+          this.isLoading = false;
         } catch (error) {
           console.error(error.message);
           this.cards = [];
           this.page = 0;
           this.totalPages = 0;
+          this.isLoading = false;
         }
       }
     }
